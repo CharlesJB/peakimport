@@ -1,0 +1,16 @@
+Package: peakanno
+Title: Annotate Peak Calling Results
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Charles",
+           family = "Joly Beauparlant",
+           role = c("aut", "cre"),
+           email = "Charles.Joly-Beauparlant@crchul.ulaval.ca")
+Description: This package annotates narrowPeak and broadPeak file.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
