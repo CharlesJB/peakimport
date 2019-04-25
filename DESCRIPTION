@@ -1,6 +1,6 @@
 Package: peakanno
 Title: Annotate Peak Calling Results
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
@@ -10,7 +10,13 @@ Description: This package annotates narrowPeak and broadPeak file.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Suggests: 
-    testthat,
+    testthat (>= 2.1.0),
     knitr,
     rmarkdown
+Imports:
+    tools
+Depends:
+    GenomicRanges
 VignetteBuilder: knitr
+LazyData: true
+RoxygenNote: 6.1.1
