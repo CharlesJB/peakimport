@@ -7,8 +7,8 @@
 #' @return A list of GRanges.
 #'
 #' @examples
-#' filenames <- get_demo_filenames()
-#' gr <- import_peaks(filenames)
+#' filename <- get_demo_file("narrowPeak")
+#' gr <- import_peaks(filename)
 #'
 #' @importFrom tools file_ext 
 #' @importFrom rtracklayer import 

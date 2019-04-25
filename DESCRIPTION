@@ -1,6 +1,6 @@
 Package: peakanno
 Title: Annotate Peak Calling Results
-Version: 0.0.8
+Version: 0.0.9
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
