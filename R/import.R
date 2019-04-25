@@ -11,6 +11,7 @@
 #' gr <- import_peaks(filenames)
 #'
 #' @importFrom tools file_ext 
+#' @importFrom rtracklayer import 
 #'
 #' @export
 import_peaks <- function(filename) {

@@ -2,4 +2,5 @@
 
 export(get_demo_file)
 export(import_peaks)
+importFrom(rtracklayer,import)
 importFrom(tools,file_ext)
