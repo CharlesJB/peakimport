@@ -2,5 +2,6 @@
 
 export(get_demo_file)
 export(import_peaks)
+import(GenomicRanges)
 importFrom(rtracklayer,import)
 importFrom(tools,file_ext)

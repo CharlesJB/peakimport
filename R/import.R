@@ -10,6 +10,7 @@
 #' filename <- get_demo_file("narrowPeak")
 #' gr <- import_peaks(filename)
 #'
+#' @import GenomicRanges
 #' @importFrom tools file_ext 
 #' @importFrom rtracklayer import 
 #'
