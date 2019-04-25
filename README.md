@@ -5,7 +5,7 @@ and `broadPeak` files.
 
 The rationale is that there is currently a
 [bug](https://github.com/GuangchuangYu/ChIPseeker/pull/93) in the
-`["ChIPseeker](https://www.bioconductor.org/packages/release/bioc/html/ChIPseeker.html)`
+`[ChIPseeker](https://www.bioconductor.org/packages/release/bioc/html/ChIPseeker.html)`
 package. When `narrowPeak` files are used, the 1st line is used as an header.
 The first entry of the `narrowPeak` file is thus removed from the analysis. The
 same problem is found with `broadPeak` files.
