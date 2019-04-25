@@ -1,6 +1,6 @@
 Package: peakimport
 Title: Import narrowPeak and broadPeak files
-Version: 0.0.16
+Version: 0.0.17
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
