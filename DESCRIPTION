@@ -1,6 +1,6 @@
 Package: peakanno
 Title: Annotate Peak Calling Results
-Version: 0.0.10
+Version: 0.0.11
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
@@ -17,6 +17,7 @@ Imports:
     tools,
     rtracklayer
 Depends:
+    R (>= 3.6),
     GenomicRanges
 VignetteBuilder: knitr
 LazyData: true
