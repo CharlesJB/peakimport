@@ -1,8 +1,16 @@
 ---
-title: "vignette"
-output: rmarkdown::html_vignette
+title: "Importing peaks"
+shorttitle: "Import narrowPeak and broadPeak files as GRanges"
+author:
+  - name: "Charles Joly Beauparlant"
+    affiliation: "Centre de Recherche du CHU de Québec - Université Laval, Québec, Québec, Canada, Département de Médecine Moléculaire, Faculté de médecine, Québec, Canada"
+package: peakimport
+abstract: >
+  The goal of this package is to provide a function to easily import `narrowPeak` and `broadPeak` files.  The rationale is that there is currently a [bug](https://github.com/GuangchuangYu/ChIPseeker/pull/93) in the `r Biocpkg("ChIPseeker")` package. When `narrowPeak` files are used, the 1st line is used as an header. The first entry of the `narrowPeak` file is thus removed from the analysis. The same problem is found with `broadPeak` files. Until the bug is solved, it will be easier to load the `narrowPeak` and `broadPeak` files using this package. The `import_peaks` function can also be used in other context when `narrowPeak` and `broadPeak` files need to be imported.
+output:
+  BiocStyle::html_document
 vignette: >
-  %\VignetteIndexEntry{vignette}
+  %\VignetteIndexEntry{Annotating narrowPeak and broadPeak files}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,6 +22,119 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(peakanno)
+# Vignette setup
+
+For this vignette, we will import `narrowPeak` and `broadPeak` files. We will
+then show how to annotate the results with the `r Biocpkg("ChIPseeker")`
+package. To complete this demo, you will need the following packages:
+
+```{r setup, message=FALSE}
+library(peakimport)
+require(ChIPseeker)
+require(TxDb.Hsapiens.UCSC.hg19.knownGene)
+require(org.Hs.eg.db)
+require(purrr)
+```
+
+# Importing files
+
+In this section we will show how to import both `narrowPeak` and `broadPeak`
+files. We will first show how to import each type separately, and then we will
+show how we can use `lapply` or `map` to import multiple files with a single
+command.
+
+## `narrowPeak` files
+
+The `narrowPeak` file format is described on the
+[UCSC webpage]("http://genome.ucsc.edu/FAQ/FAQformat.html#format12").
+
+It is not a valid format and cannot be directly imported using the `import`
+function from `rtracklayer`.
+
+```{r import_narrowPeak}
+narrowPeak_file <- get_demo_file("narrowPeak")
+gr_narrowPeak <- import_peaks(narrowPeak_file)
+gr_narrowPeak
+```
+
+The results is a `GRanges` object.
+
+## `broadPeak` files
+
+The `broadPeak` file format is described on the
+[UCSC webpage]("http://genome.ucsc.edu/FAQ/FAQformat.html#format13").
+
+Similar to the `narrowPeak` format, it is not a valid `bed` file and will need
+to be imported accordingly.
+
+```{r import_broadPeak}
+broadPeak_file <- get_demo_file("broadPeak")
+gr_broadPeak <- import_peaks(broadPeak_file)
+gr_broadPeak
+```
+
+The results is also a `GRanges` object.
+
+## Importing multiple files
+
+We can use functions such as `lapply` or `map` (from the `r CRANpkg("purrr")`
+package) to import multiple files in a single command:
+
+```{r import_multiple_files}
+multiple_files <- c(narrowPeak_file, broadPeak_file)
+names(multiple_files) <- c("narrowPeak", "broadPeak")
+grl <- lapply(multiple_files, import_peaks)
+# or
+grl <- map(multiple_files, import_peaks)
+grl
+```
+
+Both `lapply` and `map` will return the same result: a `list` of `GRanges`.
+
+The `import_peaks` function will determine if the file is a `bed`, `narrowPeak`
+or `broadPeak` file based on the file extension and will select the correct
+import strategy accordingly. It is important for the file extensions to be
+exactly `.narrowPeak` and `.broadPeak`.
+
+# Annotating results
+
+We will use the `r Biocpkg("ChIPseeker")` package to annotate the results from
+`import_peaks`:
+
+```{r annotate_peaks}
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+
+anno_narrowPeak <- annotatePeak(gr_narrowPeak,
+				TxDb = txdb,
+				annoDb = "org.Hs.eg.db")
+anno_narrowPeak
+anno_broadPeak <- annotatePeak(gr_broadPeak,
+				TxDb = txdb,
+				annoDb = "org.Hs.eg.db")
+anno_broadPeak
+```
+
+The result can be converted in the `GRanges` format with the `as.GRanges`
+function:
+
+```{r convert_to_GRanges}
+gr_anno_narrowPeak <- as.GRanges(anno_narrowPeak)
+gr_anno_narrowPeak
+gr_anno_broadPeak <- as.GRanges(anno_broadPeak)
+gr_anno_broadPeak
+```
+
+Finally, we can annotate multiple peaks in a single command with `lapply` or
+`map`:
+
+```{r annotate_multiple_files}
+anno_grl <- map(grl, annotatePeak, TxDb = txdb, annoDb = "org.Hs.eg.db")
+gr_anno_grl <- map(anno_grl, as.GRanges)
+gr_anno_grl
+```
+
+# `sessionInfo()`
+
+```{r sessionInfo}
+sessionInfo()
 ```

@@ -1,6 +1,6 @@
 Package: peakimport
 Title: Import narrowPeak and broadPeak files
-Version: 0.0.12
+Version: 0.0.13
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
@@ -16,7 +16,8 @@ Suggests:
     BiocStyle,
     ChIPseeker,
     TxDb.Hsapiens.UCSC.hg19.knownGene,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    purrr
 Imports:
     tools,
     rtracklayer
