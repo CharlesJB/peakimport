@@ -1,18 +1,22 @@
-Package: peakanno
-Title: Annotate Peak Calling Results
-Version: 0.0.11
+Package: peakimport
+Title: Import narrowPeak and broadPeak files
+Version: 0.0.12
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
            role = c("aut", "cre"),
            email = "Charles.Joly-Beauparlant@crchul.ulaval.ca")
-Description: This package annotates narrowPeak and broadPeak file.
+Description: This package imports narrowPeak and broadPeak files.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Suggests: 
     testthat (>= 2.1.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    BiocStyle,
+    ChIPseeker,
+    TxDb.Hsapiens.UCSC.hg19.knownGene,
+    org.Hs.eg.db
 Imports:
     tools,
     rtracklayer

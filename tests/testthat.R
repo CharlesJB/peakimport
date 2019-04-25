@@ -1,4 +1,4 @@
 library(testthat)
-library(peakanno)
+library(peakimport)
 
-test_check("peakanno")
+test_check("peakimport")

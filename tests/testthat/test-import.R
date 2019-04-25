@@ -2,7 +2,7 @@ context("test-import")
 
 file_exist_invalid_extension <- system.file("extdata",
 											"invalid_format.bdg",
-											package = "peakanno",
+											package = "peakimport",
 											mustWork = TRUE)
 
 valid_narrow_peak <- get_demo_file("narrowPeak")

@@ -19,17 +19,17 @@ get_demo_file <- function(format = c("bed", "narrowPeak", "broadPeak")) {
     if (format == "bed") {
         system.file("extdata",
                     "valid.bed",
-                    package = "peakanno",
+                    package = "peakimport",
                     mustWork = TRUE)
     } else if (format == "narrowPeak") {
         system.file("extdata",
                     "valid.narrowPeak",
-                    package = "peakanno",
+                    package = "peakimport",
                     mustWork = TRUE)
     } else if (format == "broadPeak") {
         system.file("extdata",
                     "valid.broadPeak",
-                    package = "peakanno",
+                    package = "peakimport",
                     mustWork = TRUE)
     }
 }
