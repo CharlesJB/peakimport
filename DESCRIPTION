@@ -1,6 +1,6 @@
 Package: peakimport
 Title: Import narrowPeak and broadPeak files
-Version: 0.0.19
+Version: 0.0.20
 Authors@R: 
     person(given = "Charles",
            family = "Joly Beauparlant",
@@ -22,7 +22,7 @@ Imports:
     tools,
     rtracklayer
 Depends:
-    R (>= 3.5),
+    R (>= 3.4),
     GenomicRanges
 VignetteBuilder: knitr
 LazyData: true
